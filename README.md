@@ -38,6 +38,18 @@ It is recommended to add the following in your `.sublime-project` file so that <
     ]
 ``` 
 
+### User specific package names
+
+Automatic Package Reloader expects your working directory to be in the SublimeText Package directory.  
+If your working directory is not in this location you can specify a package name in your .sublime-project file:
+
+```
+    "automatic_package_reloader":
+    {
+        "package_name": "MyPackageName"
+    }
+``` 
+
 
 ### Credits
 This is derived from the [code](https://github.com/divmain/GitSavvy/blob/599ba3cdb539875568a96a53fafb033b01708a67/common/util/reload.py) of Eldar Abusalimov.

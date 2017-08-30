@@ -38,6 +38,22 @@ class PackageReloaderReloadCommand(sublime_plugin.WindowCommand):
 
     @property
     def current_package_name(self):
+
+        # These 5 lines add functionality for use when working directory is not ST package directory
+        # It will get user specified package_name (if exists) from the .sublime-project file
+        # Expects structure:
+        # {
+        #     "automatic_package_reloader":
+        #     {
+        #         "package_name": "MyPackageName"
+        #     }
+        # }
+        project_data = self.window.project_data()
+        if project_data and 'automatic_package_reloader' in project_data:
+            package_name = project_data['automatic_package_reloader'].get('package_name')
+            if package_name is not None:
+                return package_name
+
         view = self.window.active_view()
         spp = os.path.realpath(sublime.packages_path())
         if view and view.file_name():
